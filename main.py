@@ -20,7 +20,7 @@ db = firebase.database()
 
 # @app.route('/')
 # def index():
-#     return render_template('log_query.html')
+#     return render_template('query.html')
 
 # Route to get error logs
 @app.route('/get_logs', methods=['POST', 'GET'])
@@ -45,8 +45,8 @@ def get_error_logs():
         print(error_logs)
 
         # return jsonify(error_logs)
-        return render_template('log_query.html', result = "ok", data = error_logs)
-    return render_template('log_query.html')
+        return render_template('query.html', result = "ok", data = error_logs)
+    return render_template('query.html')
 
 @app.route('/', methods = ['POST', 'GET'])
 def insert_logs():
@@ -220,9 +220,10 @@ def multiple_log_query():
         data = query.get()
         error_logs = [log.val() for log in data.each()]
                             
-        return render_template('multiple_log_query.html', result = "ok", data = error_logs)
+        return render_template('multiple_query.html', result = "ok", data = error_logs)
             
-    return render_template('multiple_log_query.html')
+    return render_template('multiple_query.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=3000)
+
